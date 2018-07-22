@@ -1,0 +1,23 @@
+body {
+padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+body {
+  padding-top: 56px;
+}}
+
+.poem-container {
+    height: 400px;
+}
+
+.poem {
+    overflow-y: scroll;
+    height: 400px;
+}
+
+.dropdown-menu {
+    max-height: 500px; !important;
+    overflow-y: scroll; !important;
+    overflow-x: hidden;
+}

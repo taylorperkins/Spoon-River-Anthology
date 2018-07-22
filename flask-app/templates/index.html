@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Bare - Start Bootstrap Template</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href={{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+        <link href={{ url_for('static', filename='styles.css') }} rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Spoon River Anthology</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown p1-nav-dropdown">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Poem 1</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for ind, ind_dict in poem_names.items() %}
+                                <a id="poem-1-{{ ind }}-dropdown" class="dropdown-item" href="#">{{ ind_dict['name'] }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown p2-nav-dropdown">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Poem 2</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for ind, ind_dict in poem_names.items() %}
+                                {% for key, val in ind_dict.items() %}
+                                    {% if key != 'name' %}
+                                        <a id="poem-2-{{ key }}-dropdown" class="dropdown-item p2 poem-2-{{ ind }}" href="#" style="display: none;">{{ val[1] }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary poem-submit">Submit</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="row">
+                    <div class="col-lg-6 poem-container">
+                        <h2 class="mt-5">{{ p1_name }}</h2>
+                        <p class="poem">{{ p1_html | safe }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="mt-5">{{ p2_name }}</h2>
+                        <p class="poem">{{ p2_html | safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-center">Similarity Score: {{ score }}</h2>
+                {{ poem_image | safe }}
+            </div>
+{#            <div class="col-lg-12"></div>#}
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src={{ url_for('static', filename='jquery/jquery.min.js') }}></script>
+    <script src={{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}></script>
+    <script src={{ url_for('static', filename='main.js') }}></script>
+    </body>
+</html>
