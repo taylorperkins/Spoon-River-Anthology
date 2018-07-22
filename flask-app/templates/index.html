@@ -29,7 +29,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Poem 1</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% for ind, ind_dict in poem_names.items() %}
-                                <a id="poem-1-{{ ind }}-dropdown" class="dropdown-item" href="#">{{ ind_dict['name'] }}</a>
+                                <a id="poem-1-{{ ind }}-dropdown" class="dropdown-item" href="#">{{ ind }}: {{ ind_dict['name'] }}</a>
                             {% endfor %}
                         </div>
                     </div>
