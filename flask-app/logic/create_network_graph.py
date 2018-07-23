@@ -45,7 +45,7 @@ def create_network_graph(p1, p2):
         group_label_color=True,
         node_labels=True,
         node_label_layout="numbers",
-        figsize=(8, 7)
+        figsize=(10, 8)
     )
 
     ap.draw_group_labels()
