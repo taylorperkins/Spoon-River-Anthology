@@ -16,11 +16,11 @@ def create_network_graph(p1, p2):
     for f in files:
         os.remove(f)
 
-    p_graph = nx.read_gpickle(f'../notebooks/pivot/combined_graphs/{p1}/{p2}.gpickle')
+    p_graph = nx.read_gpickle(f'../data/combined_graphs/{p1}/{p2}.gpickle')
 
-    chapter_names = pickle.load(open('../notebooks/pivot/chapter_names.p', 'rb'))
-    spa_dictionary = Dictionary.load('../notebooks/pivot/spa.dict')
-    syn_dictionary = Dictionary.load('../notebooks/pivot/syn.dict')
+    chapter_names = pickle.load(open('../data/chapter_names.p', 'rb'))
+    spa_dictionary = Dictionary.load('../data/spa.dict')
+    syn_dictionary = Dictionary.load('../data/syn.dict')
 
     for node, data in p_graph.nodes(data=True):
         # it's a synonym node
@@ -29,7 +29,7 @@ def create_network_graph(p1, p2):
             data['term'] = syn_dictionary[data['term_id']]
 
         else:
-            data['document'] = chapter_names[str(data['doc_id'])]
+            data['document'] = chapter_names[data['doc_id']]
             data['term'] = spa_dictionary[data['term_id']]
 
     p_graph = nx.relabel_nodes(

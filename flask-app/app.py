@@ -8,15 +8,15 @@ from logic.create_network_graph import create_network_graph
 
 app = Flask(__name__)
 
-n_largest = pickle.load(open('../notebooks/pivot/n_largest.p', 'rb'))
-poem_names = pickle.load(open('../notebooks/pivot/chapter_names.p', 'rb'))
+n_largest = pickle.load(open('../data/n_largest.p', 'rb'))
+poem_names = pickle.load(open('../data/chapter_names.p', 'rb'))
 
 n_largest_with_names = dict()
 for key_ind, scores in n_largest.items():
-    n_largest_with_names[key_ind] = {'name': poem_names[key_ind]}
+    n_largest_with_names[key_ind] = {'name': poem_names[int(key_ind)]}
 
     for score, ind in scores:
-        n_largest_with_names[key_ind][str(ind)] = (score, poem_names[str(ind)])
+        n_largest_with_names[key_ind][str(ind)] = (score, poem_names[ind])
 
 
 @app.route('/')
